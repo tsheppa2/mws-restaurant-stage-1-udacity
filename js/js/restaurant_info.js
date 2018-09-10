@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
-      newFunction(error);
+      console.error(error);
     } else {      
       self.newMap = L.map('map', {
         center: [restaurant.latlng.lat, restaurant.latlng.lng],
@@ -90,7 +90,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   image.className = 'restaurant-img'
   image.alt =`${restaurant.name} image`;
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  li.append(image);
+
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
 
@@ -194,6 +194,3 @@ getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-function newFunction(error) {
-    console.error(error);
-}
